@@ -1,9 +1,12 @@
 import getWeather from '../../services/getWeather'
+import {changeTags} from '../../reducers/actions'
+import {store} from '../../reducers/store'
 
 const updateInfoWindow = async (marker) =>{
     console.log(marker)
     const weather = await getWeather(marker.position)
     console.log(weather)
+    store.dispatch(changeTags(weather.tags))
     //first letter of each word to caps
     const weatherDesc = weather.weather[0].description.split(' ').map(capitalize).join(' ');
     marker.infoWindow.setContent(`

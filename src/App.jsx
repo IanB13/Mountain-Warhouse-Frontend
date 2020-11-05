@@ -6,7 +6,7 @@ import DragToAddButton from './components/buttons/DragToAddButton'
 import 'semantic-ui-css/semantic.min.css'
 import campsite from "./resources/campsite.svg"
 import InfoModal from "./components/modals/InfoModal"
-import ItemModal from "./components/modals/ItemModal"
+import ItemModal from "./components/modals/ItemModal/ItemModal"
 
 const App = () => {
   return (

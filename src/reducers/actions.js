@@ -22,11 +22,6 @@ export const initMap = (mapRef) =>{
     }
 }
 
-export const addLocationThenSetWeather = () =>{
-
-
-}
-
 export const addLocation = (markerData) =>{
     return  dispatch => {
         dispatch({
@@ -36,4 +31,16 @@ export const addLocation = (markerData) =>{
     }
 
 }
+
+export const changeTags = (tags) =>{
+    return  dispatch => {
+        dispatch({
+            type: 'CHANGE_TAGS',
+            data: tags,
+        })
+    }
+
+}
+
+
 
