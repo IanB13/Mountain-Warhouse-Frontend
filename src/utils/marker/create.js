@@ -1,5 +1,6 @@
 import defIcon from "../../resources/defaultIcons/smile.svg"
 import {store} from '../../reducers/store'
+import updateInfoWindow from './updateInfoWindow'
 
 /*options, maybe do typeScript for only this file 
 options ={
@@ -33,6 +34,14 @@ const createMarker = (google, position, options) => {
         const markers = store.getState().markers
         markers.map((marker) => marker.infoWindow.close())
         infoWindow.open(google.map, marker);
+        if(infoWindow.content === "loading..."){
+         updateInfoWindow({
+            marker,
+            position,
+            type,
+            infoWindow
+        }) 
+    }
     });
 
     const type = options.type?options.type:"generic"

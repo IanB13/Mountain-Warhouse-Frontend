@@ -1,5 +1,6 @@
 //Config files, single location for changable items
 
+export const BaseURL = "http://localhost:3000/"
 
 //Google maps API key 
 export const googleApiKey = process.env.REACT_APP_GOOGLE_MAPS_API;

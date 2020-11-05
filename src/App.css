@@ -47,3 +47,19 @@
   top: 60px;
   margin-right: 0px;
 }
+
+.infowindow {
+  line-height: 1.35;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: center;
+}
+
+li{
+  list-style-type: none;
+  padding-right: 3em;
+}
+
+span{
+  font-weight: bold;
+}
