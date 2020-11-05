@@ -39,8 +39,20 @@ export const changeTags = (tags) =>{
             data: tags,
         })
     }
-
 }
 
+export const openItemModal = () =>{
+    return  dispatch => {
+        dispatch({
+            type: 'OPEN_ITEM_MODAL',
+        })
+    }
+}
 
-
+export const closeItemModal = () =>{
+    return  dispatch => {
+        dispatch({
+            type: 'CLOSE_ITEM_MODAL',
+        })
+    }
+}

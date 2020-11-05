@@ -6,7 +6,7 @@ const updateInfoWindow = async (marker) =>{
     console.log(marker)
     const weather = await getWeather(marker.position)
     console.log(weather)
-    store.dispatch(changeTags(weather.tags))
+
     //first letter of each word to caps
     const weatherDesc = weather.weather[0].description.split(' ').map(capitalize).join(' ');
     marker.infoWindow.setContent(`
@@ -18,9 +18,10 @@ const updateInfoWindow = async (marker) =>{
                 <li> Max: <span> ${Math.round(weather.main.temp_max -273)}°C </span>  </l1>
                 <li> Min: <span> ${Math.round(weather.main.temp_min -273)}°C </span>  </l1>
             </ul>
-            <button class="ui button blue">Buy Gear</button>
+            <button id = "buyGear" class="ui button blue">Buy Gear</button>
         </div>
     `)
+    store.dispatch(changeTags(weather.tags))
 }
 
 const capitalize = (s) => {
