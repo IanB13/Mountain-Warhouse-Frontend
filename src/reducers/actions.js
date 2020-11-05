@@ -22,6 +22,11 @@ export const initMap = (mapRef) =>{
     }
 }
 
+export const addLocationThenSetWeather = () =>{
+
+
+}
+
 export const addLocation = (markerData) =>{
     return  dispatch => {
         dispatch({
@@ -32,11 +37,3 @@ export const addLocation = (markerData) =>{
 
 }
 
-export const addInfoWindow = (infoWindow) => {
-    return  dispatch => {
-        dispatch({
-            type: 'OPEN_INFOWINDOW',
-            data: infoWindow
-        })
-    }
-}

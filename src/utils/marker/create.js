@@ -1,5 +1,4 @@
 import defIcon from "../../resources/defaultIcons/smile.svg"
-import {addInfoWindow} from "../../reducers/actions"
 import {store} from '../../reducers/store'
 
 /*options, maybe do typeScript for only this file 
@@ -26,20 +25,14 @@ const createMarker = (google, position, options) => {
         icon
   });
 
-    const clientInfoWindow = new google.maps.InfoWindow({
+    const infoWindow = new google.maps.InfoWindow({
         content
     });
 
-
-
     marker.addListener('click',  () => {
-        clientInfoWindow.open(google.map, marker);
-        //closes old infoWindow when new one is clicked
-        const oldInfoWindow = store.getState().infoWindow
-        if(oldInfoWindow){
-            oldInfoWindow.close()
-        }
-        store.dispatch(addInfoWindow(clientInfoWindow))
+        const markers = store.getState().markers
+        markers.map((marker) => marker.infoWindow.close())
+        infoWindow.open(google.map, marker);
     });
 
     const type = options.type?options.type:"generic"
@@ -48,7 +41,8 @@ const createMarker = (google, position, options) => {
     return {
         marker,
         position,
-        type
+        type,
+        infoWindow
     }
 }
 

@@ -12,7 +12,7 @@ const App = () => {
     <div className="App">
       <Map />
       <DragToAddButton
-      svgIcon = {campsite} type = {campsite}>
+      svgIcon = {campsite} type = {campsite} content ={"loading..."}>
         Add Campsite
       </DragToAddButton>
       <InfoModal/>
