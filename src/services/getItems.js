@@ -8,7 +8,7 @@ const getItems = async (tags) =>{
         }
     }
 
-    const items = await axios.get(`${BaseURL}/api/items`,config)
+    const items = await axios.get(`${BaseURL}api/items`,config)
     return items.data
 
 }

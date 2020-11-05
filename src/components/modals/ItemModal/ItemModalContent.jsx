@@ -1,15 +1,18 @@
-import React, {useState,useRef} from 'react'
-import { Button, Image, Modal } from 'semantic-ui-react'
-import { CarouselProvider, Slider, Slide } from 'pure-react-carousel';
+import React, {useRef} from 'react'
+import { Button, Modal } from 'semantic-ui-react'
+import { CarouselProvider, Slider} from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
+import SlideHolder from './SlideHolder';
+import { useDispatch } from 'react-redux';
+import {closeItemModal} from '../../../reducers/actions'
 
-const ItemModal = () => {
-    const [open, setOpen] = useState(true) // will use redux 
+const ItemModal = ({items,openModal,setOpenModal}) => {
+    const dispatch = useDispatch()
     const buttonRef = useRef(null)
 
     const forward = () =>{
         const slideNum = buttonRef.current.getStore().getStoreState().currentSlide +1
-        if(slideNum < 3){
+        if(slideNum < items.length){
             buttonRef.current.carouselStore.setStoreState({currentSlide: slideNum})
         }
     }
@@ -21,30 +24,29 @@ const ItemModal = () => {
         }
     }
 
-  console.log(buttonRef)
+    const setClose = () =>{
+        dispatch(closeItemModal)
+        setOpenModal(false)
+    }
+
     return (
         <Modal
-            onClose={() => setOpen(false)}
-            open={open}
+            onClose={() => setClose()}
+            open = {openModal}
             closeIcon
         >
-            <Modal.Header>Select a Photo</Modal.Header>
+            <Modal.Header> Mountain Warehouse Gear for the Conditions!</Modal.Header>
             <Modal.Content image>
                 <CarouselProvider
                     ref={buttonRef}
                     naturalSlideWidth={10}
                     naturalSlideHeight={5}
-                    totalSlides={3}
+                    totalSlides={items.length}
                 >
                     <Slider>
-                        <Slide index={0}>
-                        <Image size='medium' src='https://react.semantic-ui.com/images/avatar/large/rachel.png' wrapped />
-                             I am the first Slide.</Slide>
-                        <Slide index={1}>I am the second Slide.</Slide>
-                        <Slide index={2}>I am the third Slide.</Slide>
+                        {items.map(item => <SlideHolder key = {item.id} item ={item} />)}
                     </Slider>
                 </CarouselProvider>
-
             </Modal.Content>
 
             <Modal.Actions>
