@@ -1,26 +1,22 @@
-import React, {useRef} from 'react'
+import React,{ useState } from 'react'
 import { Button, Modal } from 'semantic-ui-react'
-import { CarouselProvider, Slider} from 'pure-react-carousel';
-import 'pure-react-carousel/dist/react-carousel.es.css';
 import SlideHolder from './SlideHolder';
 import { useDispatch } from 'react-redux';
 import {closeItemModal} from '../../../reducers/actions'
 
 const ItemModal = ({items,openModal,setOpenModal}) => {
     const dispatch = useDispatch()
-    const buttonRef = useRef(null)
+    const [slideNum,setSlideNum] = useState(0)
 
     const forward = () =>{
-        const slideNum = buttonRef.current.getStore().getStoreState().currentSlide +1
-        if(slideNum < items.length){
-            buttonRef.current.carouselStore.setStoreState({currentSlide: slideNum})
+        if(slideNum < items.length-1){
+            setSlideNum(slideNum+1)
         }
     }
     
     const backwards = () =>{
-        const slideNum = buttonRef.current.getStore().getStoreState().currentSlide -1
         if(slideNum >= 0){
-            buttonRef.current.carouselStore.setStoreState({currentSlide: slideNum})
+            setSlideNum(slideNum-1)
         }
     }
 
@@ -29,35 +25,29 @@ const ItemModal = ({items,openModal,setOpenModal}) => {
         setOpenModal(false)
     }
 
+    const prevColor = (slideNum === 0)?"grey":"blue"
+    const nextColor = (slideNum === items.length-1)?"grey":"blue"
+
     return (
         <Modal
             onClose={() => setClose()}
             open = {openModal}
             closeIcon
+            size="small"
         >
             <Modal.Header> Mountain Warehouse Gear for the Conditions!</Modal.Header>
-            <Modal.Content image>
-                <CarouselProvider
-                    ref={buttonRef}
-                    naturalSlideWidth={10}
-                    naturalSlideHeight={5}
-                    totalSlides={items.length}
-                >
-                    <Slider>
-                        {items.map(item => <SlideHolder key = {item.id} item ={item} />)}
-                    </Slider>
-                </CarouselProvider>
+            <Modal.Content image style = {{"justifyContent": "center", "display": "flex"}}>
+                <SlideHolder item ={items[slideNum]}/>
             </Modal.Content>
 
-            <Modal.Actions>
-                <Button color='black' onClick={() => backwards()}>
-                    backwards
+            <Modal.Actions style = {{"justifyContent": "space-between", "display": "flex"}}>
+                <Button color={prevColor} onClick={() => backwards()}>
+                    Previous
                 </Button>
-                <Button
-                    content="forwards"
-                    onClick={() => forward()}
-                    positive
-                />
+
+                <Button color={nextColor} onClick={() => forward()} >
+                    Next
+                </Button>
             </Modal.Actions>
 
         </Modal>
