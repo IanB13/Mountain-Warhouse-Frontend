@@ -1,7 +1,7 @@
 //simple modal that displays info in modal when button clicked
 import React from 'react'
-import { Button, Modal, Image } from 'semantic-ui-react'
-import smile from '../../resources/defaultIcons/smile.svg'
+import { Button, Modal} from 'semantic-ui-react'
+
 
 function InfoModal({x,y}) {
   const [open, setOpen] = React.useState(false)
@@ -18,11 +18,6 @@ function InfoModal({x,y}) {
     "marginRight": "0px"
   }
 
-  const iconStyle = {
-    "height": "1.5em",
-    'paddingLeft':' 0.2em',
-    'paddingRight': '0.2em'
-  }
 
   return (
     <Modal
@@ -35,11 +30,23 @@ function InfoModal({x,y}) {
     >
       <Modal.Content>
         <p>
-          Generic INFO
+          Add a campsite then click on it to see the current weather conditions at that area
         </p>
-        <Image src = {smile} alt="smile" inline style = {iconStyle} /> 
-        <div></div>
-        <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+        <p>
+        Then click on the "Buy Gear" button to see a selection of Mountain Warehouse gear appropriate for the weather conditions
+        </p>
+        <p>
+          Icons made by
+          <a href="https://www.flaticon.com/authors/freepik" title="Freepik"
+            rel="noopener noreferrer nofollow" target="_blank">
+            Freepik
+            </a>
+          from
+          <a href="https://www.flaticon.com/" title="Flaticon"
+            rel="noopener noreferrer nofollow" target="_blank">
+            www.flaticon.com
+            </a>
+        </p>
       </Modal.Content>
     </Modal>
   )

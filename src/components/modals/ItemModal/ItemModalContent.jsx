@@ -1,6 +1,6 @@
 import React,{ useState } from 'react'
 import { Button, Modal } from 'semantic-ui-react'
-import SlideHolder from './SlideHolder';
+import Slide from './Slide';
 import { useDispatch } from 'react-redux';
 import {closeItemModal} from '../../../reducers/actions'
 
@@ -25,8 +25,8 @@ const ItemModal = ({items,openModal,setOpenModal}) => {
         setOpenModal(false)
     }
 
-    const prevColor = (slideNum === 0)?"grey":"blue"
-    const nextColor = (slideNum === items.length-1)?"grey":"blue"
+    const prevVis = (slideNum === 0)?"hidden":"visible"
+    const nextVis = (slideNum === items.length-1)?"hidden":"visible"
 
     return (
         <Modal
@@ -37,15 +37,15 @@ const ItemModal = ({items,openModal,setOpenModal}) => {
         >
             <Modal.Header> Mountain Warehouse Gear for the Conditions!</Modal.Header>
             <Modal.Content image style = {{"justifyContent": "center", "display": "flex"}}>
-                <SlideHolder item ={items[slideNum]}/>
+                <Slide item ={items[slideNum]}/>
             </Modal.Content>
 
             <Modal.Actions style = {{"justifyContent": "space-between", "display": "flex"}}>
-                <Button color={prevColor} onClick={() => backwards()}>
+                <Button color="blue" style ={{"visibility":`${prevVis}`}} onClick={() => backwards()}>
                     Previous
                 </Button>
 
-                <Button color={nextColor} onClick={() => forward()} >
+                <Button color="blue" style ={{"visibility":`${nextVis}`}} onClick={() => forward()} >
                     Next
                 </Button>
             </Modal.Actions>

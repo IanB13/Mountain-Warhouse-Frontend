@@ -24,15 +24,7 @@
 }
 
 
-#addLocationsButton{
-  display: block;
-  position: absolute;
-  right: 20px;
-  top: 12px;
-  margin-right: 0px;
-}
-
-#estimateModalButton {
+#addLocationsButton {
   display: block;
   position: absolute;
   right: calc(50% - 70px);
