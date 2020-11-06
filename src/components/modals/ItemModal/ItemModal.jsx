@@ -8,30 +8,29 @@ import getItems from '../../../services/getItems'
 const ItemModal = () =>{
     const [openModal,setOpenModal] = useState(false)
     const [items,setItems] =useState(null)
-    console.log(items)
 
-    const openModalBoi = () =>{
+
+    const dispatchOpenFunc = () =>{
         setOpenModal(true)
         store.dispatch(openItemModal())
     }
 
     const itemStore = useSelector(state => state.items)
 
-    useSelector(()=>{
-        console.log("useSelector firing")
-        const x = document.getElementById("buyGear")
-        if(x){
-            x.onclick = openModalBoi
+    useSelector( ()=>{
+        const button = document.getElementById("buyGear")
+        if(button){
+            button.onclick = dispatchOpenFunc
         }
     })
 
     useEffect(()=>{
         if(itemStore.tags){
-        const x = async() =>{
+        const itemsFunc = async() =>{
             const response = await getItems(itemStore.tags)
             setItems(response)   
         }
-        x()
+        itemsFunc()
         }
     },[itemStore.tags])
 
